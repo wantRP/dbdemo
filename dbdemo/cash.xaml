@@ -1,0 +1,59 @@
+﻿<Window x:Class="dbdemo.cash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+        xmlns:local="clr-namespace:dbdemo"
+        mc:Ignorable="d"
+				Loaded="Window_Loaded"
+        Title="收银" Height="450" Width="449">
+	<Grid Background="AliceBlue">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="90*"/>
+			<RowDefinition Height="35"/>
+			<RowDefinition Height="30*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="1" Background="AliceBlue">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="3*"/>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition Width="2*"/>
+			</Grid.ColumnDefinitions>
+			<TextBlock Grid.Column="0" Text="货号" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"></TextBlock>
+			<TextBlock Grid.Column="2" Text="数量" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"></TextBlock>
+			<TextBox Grid.Column="1" InputMethod.IsInputMethodEnabled="False"
+                FontSize="16" PreviewTextInput="limitnumber" Name="txtgoodno"></TextBox>
+			<TextBox Grid.Column="3" InputMethod.IsInputMethodEnabled="False" Name="txtnum"
+                FontSize="16" PreviewTextInput="limitnumber" FontFamily="helvetica"></TextBox>
+			<Button Grid.Column="5" Name="additems" Content="Add" FontFamily="HelveticaNeue LT Pro" Margin="10,5,10,0" Click="additems_Click" Height="25" VerticalAlignment="Top" IsDefault="True"></Button>
+			<Button Grid.Column="5" Name="cancelitems" Content="remove" FontFamily="Helvetica Neue LT Pro" Margin="10 5 10 5" Visibility="Hidden"></Button>
+			
+		</Grid>
+		<StackPanel Orientation="Vertical" Grid.Row="0" Height="80" Margin="0,30,5,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+			<Button  Name="editcount" Content="编辑数量" Width="60" VerticalAlignment="Bottom"  IsEnabled="False" Click="editcount_Click"/>
+			<Button Content="删除" Name="delit" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="60" Click="Button_Click" Margin="0 10 0 0" IsEnabled="False"/>
+		</StackPanel>
+		
+		<Grid Grid.Row="2" Background="AliceBlue">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+			</Grid.ColumnDefinitions>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="总计：" FontSize="30" FontFamily="FZYouHeiS-R-GB"/>
+				<TextBlock Text="0" Name="txttotal" FontSize="30" FontFamily="Helvetica Neue LT Pro"/>
+				<TextBlock Text="元"  FontSize="30" FontFamily="FZYouHeiS-R-GB"/>
+			</StackPanel>
+			<TextBlock VerticalAlignment="Bottom" Text="{Binding workerid}" FontFamily="Helvetica Neue LT Pro" Name="txtworkerid"/>
+			<Button Content="确认" Name="submit" HorizontalAlignment="Right" Margin="0,40,11,0" VerticalAlignment="Top" Width="75" Height="32" FontSize="16" Click="submit_Click" Grid.Column="1"/>
+			
+		</Grid>
+		<TextBox Text="货号 品名                                     数量	单位 单价	总价" Height="17" VerticalAlignment="Top" Background="AliceBlue"/>
+		<ListBox HorizontalAlignment="Left" Height="100" Margin="0,20,0,0" VerticalAlignment="Top" Width="360" SelectionMode="Single" Name="list1" FontSize="16" SelectionChanged="list1_SelectionChanged"/>
+
+	</Grid>
+</Window>

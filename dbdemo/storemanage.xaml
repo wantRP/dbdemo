@@ -1,0 +1,71 @@
+﻿<Window x:Class="dbdemo.storemanage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dbdemo"
+				xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+        mc:Ignorable="d"
+				Loaded="onload"
+        Title="storemanage" Height="307" Width="499">
+	<Grid Background="WhiteSmoke">
+		<TabControl Margin="0 0 0 0" >
+			<TabItem Header="商品信息">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="4*"/>
+						<ColumnDefinition Width="1*"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid	Margin="0,0,0,0" Name="goodsgrid" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="False" SelectionUnit="FullRow" SelectionMode="Single" CanUserDeleteRows="False" Grid.Column="0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="条码号" Width="80" Binding="{Binding stdid}" x:Name="no"/>
+							<DataGridTextColumn Header="货号" Width="70" Binding="{Binding gno}"/>
+							<DataGridTextColumn Header="名称" Width="90" Binding="{Binding gname}"/>
+							<DataGridTextColumn Header="单位" Width="40" Binding="{Binding gunit}"/>
+							<DataGridTextColumn Header="单价" Width="80" Binding="{Binding gprice}"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<Button Content="保存" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" Width="80" Name="addinfo" Click="save_Click" Grid.Column="1"/>
+					<Button Content="刷新" HorizontalAlignment="Center" Margin="0,51,0,0" VerticalAlignment="Top" Width="80" x:Name="delinfo" Click="refresh_Click" Grid.Column="1"/>
+					<Button Content="删除此行信息" HorizontalAlignment="Center" Margin="0,172,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="1"/>
+					<Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="9,101,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Visibility="Hidden"/>
+
+				</Grid>
+			</TabItem>
+			<TabItem Header="库存">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="148"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Name="stocksgrid" Grid.Column="0"  ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True"  SelectionMode="Single" SelectionUnit="FullRow"  >
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="货号" Width="60" Binding="{Binding sno}" />
+							<DataGridTextColumn Header="条码号" Width="100" Binding="{Binding sstdid}" />
+							<DataGridTextColumn Header="名称" Width="120" Binding="{Binding sname}"/>
+							<DataGridTextColumn Header="存量" Width="60" Binding="{Binding quantity}" />
+						</DataGrid.Columns>
+					</DataGrid>
+					<GroupBox Grid.Column="1" Header="查找库存" Height="110" Background="White" VerticalAlignment="Top">
+						<StackPanel Orientation="Vertical" Margin="5">
+							<TextBox Grid.Column="1" HorizontalAlignment="Left" Height="18"  TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Name="txtsearch" TextChanged="txtsearch_TextChanged"/>
+							<RadioButton Content="货号" Grid.Column="1" HorizontalAlignment="Left" Margin="0 5 0 0" VerticalAlignment="Top" IsChecked="True" Name="bygoodid" Checked="bygoodid_Checked" Height="14" Width="43"/>
+							<RadioButton Content="条码" Grid.Column="1" HorizontalAlignment="Left" Margin="0 5 0 0" VerticalAlignment="Top" Name="bystdid" Checked="bystdid_Checked" Height="14" Width="43"/>
+							<RadioButton Content="名称" Grid.Column="1" HorizontalAlignment="Left" Margin="0 5 0 0" VerticalAlignment="Top" Name="byname" Checked="byname_Checked" Height="14" Width="43"/>
+
+						</StackPanel>
+					</GroupBox>
+					<Button Content="增加存量" HorizontalAlignment="Left" Margin="5,0,0,10" VerticalAlignment="Bottom" Width="65" Name="addstock" Click="addstock_Click" Grid.Column="1" RenderTransformOrigin="0.385,1.579" Height="19"/>
+					<Button Content="减少存量" HorizontalAlignment="Left" Margin="80,0,0,10" VerticalAlignment="Bottom" Width="65" Name="decstock" Grid.Column="1" Click="decstock_Click" Height="19"/>
+					<TextBox Grid.Column="1" input:InputMethod.IsInputMethodEnabled="False" PreviewTextInput="limitnumber"
+					HorizontalAlignment="Left" Height="18" Margin="45,0,0,35"  Text="0" VerticalAlignment="Bottom" Width="55" Name="numchanged" />
+					<Label Content="改变" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,32" VerticalAlignment="Bottom" Height="25" Width="33"/>
+					<Button Content="新增一条库存记录" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,84" VerticalAlignment="Bottom" Name="addnewstore" Click="addnewstore_Click" Height="19" Width="100"/>
+
+				</Grid>
+			</TabItem>
+		</TabControl>
+
+
+	</Grid>
+</Window>

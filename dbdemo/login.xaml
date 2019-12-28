@@ -1,0 +1,50 @@
+﻿<Window x:Class="dbdemo.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="登录" Height="200" Width="300">
+    
+    <Grid Background="WhiteSmoke">
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" TextAlignment="Right"  VerticalAlignment="Center" 
+                   Text="工号："/>
+        <TextBox Grid.Row="1" Grid.Column="1" Height="24" Margin="5 0 5 0" 
+                     InputMethod.IsInputMethodEnabled="False"
+                     PreviewTextInput="limitnumber" FontSize="13"
+                 Name="txt_userName" MaxLength="5" />
+        <TextBlock Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center"
+                   Text="密码："/>
+        <PasswordBox Grid.Row="2" Grid.Column="1" Height="24" Margin="5 0 5 0" InputMethod.IsInputMethodEnabled="False" 
+                     Name="txt_Pwd" FontSize="13"/>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="登录" Width="70" Margin="0 0 0 0" Height="25"
+                    Name="btn_login" Click="btn_login_Click" IsDefault="True"/>
+            <Button Content="退出" Width="70" Margin="40 0 0 0" Height="25"
+                    Name="btn_exit" Click="btn_exit_Click" />
+        </StackPanel>
+			<TextBlock Grid.Row="3"  VerticalAlignment="Top">
+         <Hyperlink NavigateUri="editpassword.xml" Name="linkHelp" Click="linkDmsite_Click">
+                修改密码   
+            </Hyperlink>
+       </TextBlock>
+		</Grid>
+        <TextBlock Text="工号或密码输入错误，请检查" Foreground="Red" UseLayoutRounding="False" Visibility="Hidden"
+                   Height="20" Width="160"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Name="wrongmsg" />
+		
+	</Grid>
+</Window>
